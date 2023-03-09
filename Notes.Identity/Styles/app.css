@@ -1,0 +1,38 @@
+.input{
+    font-size: 16px;
+    font-family: "JetBrains Mono", ui-monospace;
+    background-color: azure;
+    width: 100%;
+}
+.header{
+    font-family: "JetBrains Mono", ui-monospace;
+    color: #000000;
+    font-size: 30px;
+    text-align: center;
+}
+
+.button{
+    font-size: 16px;
+    background-color: azure;
+    border:  black;
+    border-radius: 4px;
+    color: black;
+    font-family: "JetBrains Mono", ui-monospace;
+    width: 100%;
+}
+
+.block{
+    margin-top: 10px;
+}
+
+.switch-button{
+    margin-top: 8px;
+    font-family: "JetBrains Mono", ui-monospace;
+    font-size: 8px;
+    border : black;
+    border-radius: 4px;
+    background-color: azure;
+    display: inline-block ;
+    text-align: center;
+    width: 100%;
+}

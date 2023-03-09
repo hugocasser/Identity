@@ -1,6 +1,7 @@
 ﻿using IdentityServer4.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using Notes.Identity.Data;
 using Notes.Identity.Models;
 
@@ -40,20 +41,27 @@ public class StartUp
         services.ConfigureApplicationCookie(config =>
         {
             config.Cookie.Name = "Notes.Identity.Cookie";
-            config.LoginPath = "Auth/Login";
-            config.LogoutPath = "Auth/Logout";
+            config.LoginPath = "/Auth/Login";
+            config.LogoutPath = "/Auth/Logout";
         });
+        services.AddControllersWithViews();
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         if (env.IsDevelopment())
             app.UseDeveloperExceptionPage();
+        app.UseStaticFiles(new StaticFileOptions
+        {
+            FileProvider = new PhysicalFileProvider(
+                Path.Combine(env.ContentRootPath, "Styles")),
+            RequestPath = "/styles"
+        });
         app.UseRouting();
         app.UseIdentityServer();
         app.UseEndpoints(endpoints =>
         {
-            endpoints.MapGet("/", async context => { await context.Response.WriteAsync("Hello"); });
+            endpoints.MapDefaultControllerRoute();
         });
     }
 }
